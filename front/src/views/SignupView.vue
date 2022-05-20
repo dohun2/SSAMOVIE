@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <b-card title="로그인" class="mb-3 login-form">
+    <b-card title="회원가입" class="mb-3 login-form">
       <div class="id-card">
         <label for="user_id">아이디</label>
         <br />
@@ -10,10 +10,10 @@
         <label for="password">패스워드</label>
         <br />
         <input type="password" id="password" />
+        <input type="password" />
       </div>
       <div class="id-card buttons">
-        <b-button class="me-1" variant="primary">로그인</b-button>
-        <router-link :to="{ name: 'signup' }">11</router-link>
+        <b-button variant="primary">회원가입</b-button>
       </div>
     </b-card>
   </div>
