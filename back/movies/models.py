@@ -9,6 +9,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=100)
     overview = models.TextField()
     release_date = models.DateField()
+    genres = models.TextField()
     vote_average = models.FloatField()
     poster_path = models.CharField(max_length=200)
 
@@ -27,10 +28,3 @@ class Comment(models.Model):
     content = models.TextField()
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments")
 
-class Movie(models.Model):
-    title = models.TextField()
-    overview = models.TextField()
-    genres = models.TextField()
-    vote_average = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(10)])
-    release_date = models.TextField()
-    poster_path = models.TextField()
