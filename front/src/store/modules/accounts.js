@@ -35,7 +35,7 @@ export default {
     },
 
     signup({ dispatch }, credentials) {
-
+      console.log(credentials)
       axios({
         url: drf.accounts.signup(),
         method: 'post',
