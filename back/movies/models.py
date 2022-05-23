@@ -2,8 +2,8 @@ from django.db import models
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-class Genre(models.Model):
-    name = models.TextField()
+# class Genre(models.Model):
+#     name = models.TextField()
 
 class Movie(models.Model):
     title = models.CharField(max_length=100)
@@ -30,7 +30,7 @@ class Comment(models.Model):
 class Movie(models.Model):
     title = models.TextField()
     overview = models.TextField()
-    genres = models.ManyToManyField(Genre)
+    genres = models.TextField()
     vote_average = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(10)])
     release_date = models.TextField()
     poster_path = models.TextField()
