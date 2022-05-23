@@ -156,3 +156,5 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.IsAuthenticated', #인증된 사용자만
     ]
 }
+
+CORS_ALLOW_ALL_ORIGINS = True
