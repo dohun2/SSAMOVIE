@@ -6,7 +6,7 @@ export default {
     movies: [],
   },
   getters: {
-    movies: state => state.articles
+    movies: state => state.movies
   },
   mutations: {
     SET_MOVIES: (state, movies) => state.movies = movies,

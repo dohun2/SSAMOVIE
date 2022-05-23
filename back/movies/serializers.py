@@ -16,7 +16,7 @@ class MovieSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Movie
-        fields = '__all__'
+        fields = ('title','poster_path','id')
 
 class MovielistSerializer(serializers.ModelSerializer):
     
