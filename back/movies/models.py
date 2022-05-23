@@ -9,9 +9,10 @@ class Movie(models.Model):
     title = models.CharField(max_length=100)
     overview = models.TextField()
     release_date = models.DateField()
-    genres = models.TextField()
+    genre = models.TextField()
     vote_average = models.FloatField()
     poster_path = models.CharField(max_length=200)
+    # id = models.TextField()
 
 class Article(models.Model):
   user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="articles")
