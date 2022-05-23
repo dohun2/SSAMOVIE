@@ -1,27 +1,48 @@
 <template>
   <div class="box">
-    <b-card title="로그인" class="mb-3 login-form">
+    <b-card bg-variant="dark" title="로그인" class="mb-3 login-form">
       <div class="id-card">
         <label for="user_id">아이디</label>
         <br />
-        <input type="text" id="user_id" />
+        <input v-model="credentials.username" type="text" id="user_id" />
       </div>
       <div class="id-card">
-        <label for="password">패스워드</label>
+        <label for="password">비밀번호</label>
         <br />
-        <input type="password" id="password" />
+        <input v-model="credentials.password" type="password" id="password" />
       </div>
       <div class="id-card buttons">
-        <b-button class="me-1" variant="primary">로그인</b-button>
-        <router-link :to="{ name: 'signup' }">11</router-link>
+        <b-button @click="login(credentials)" class="me-1" variant="danger"
+          >로그인</b-button
+        >
+        <b-button @click="goSignup" class="me-1" variant="danger"
+          >회원가입</b-button
+        >
       </div>
     </b-card>
   </div>
 </template>
 
 <script>
+import router from "@/router";
+import { mapActions } from "vuex";
+
 export default {
   name: "LoginView",
+  data() {
+    return {
+      credentials: {
+        username: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    goSignup() {
+      router.push("signup");
+    },
+    ...mapActions(["login"]),
+  },
 };
 </script>
 
@@ -32,6 +53,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 .login-form {
   width: 50%;

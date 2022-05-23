@@ -1,19 +1,22 @@
 <template>
   <div class="box">
-    <b-card title="회원가입" class="mb-3 login-form">
+    <b-card bg-variant="dark" title="회원가입" class="mb-3 login-form">
       <div class="id-card">
         <label for="user_id">아이디</label>
         <br />
         <input type="text" id="user_id" />
       </div>
       <div class="id-card">
-        <label for="password">패스워드</label>
+        <label for="password1">비밀번호</label>
         <br />
-        <input type="password" id="password" />
-        <input type="password" />
+        <input type="password" id="password1" />
+        <br />
+        <label for="password2">비밀번호 재확인</label>
+        <br />
+        <input type="password" id="password2" />
       </div>
       <div class="id-card buttons">
-        <b-button variant="primary">회원가입</b-button>
+        <b-button variant="danger">회원가입</b-button>
       </div>
     </b-card>
   </div>
@@ -21,27 +24,9 @@
 
 <script>
 export default {
-  name: "LoginView",
+  name: "SignupView",
 };
 </script>
 
 <style>
-.box {
-  height: 100vh;
-  widows: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.login-form {
-  width: 50%;
-  max-width: 20rem;
-}
-.id-card {
-  margin-bottom: 10px;
-}
-
-.buttons {
-  text-align: center;
-}
 </style>
