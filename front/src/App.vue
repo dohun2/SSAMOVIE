@@ -1,17 +1,13 @@
 <template>
   <div id="app">
-    <login-view></login-view>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import LoginView from "@/views/LoginView.vue";
-
 export default {
   name: "App",
-  components: {
-    LoginView,
-  },
+  components: {},
 };
 </script>
 
@@ -27,5 +23,6 @@ body {
   color: #2c3e50;
   height: 100vh;
   width: 100vw;
+  background-color: black;
 }
 </style>
