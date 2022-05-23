@@ -1,6 +1,7 @@
 <template>
   <div class="box">
     <b-card bg-variant="dark" title="회원가입" class="mb-3 login-form">
+      <error-list v-if="authError"></error-list>
       <div class="id-card">
         <label for="user_id">아이디</label>
         <br />
@@ -25,10 +26,17 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import ErrorList from "../components/ErrorList.vue";
 
 export default {
   name: "SignupView",
+  components: {
+    ErrorList,
+  },
+  computed: {
+    ...mapGetters(["authError"]),
+  },
   data() {
     return {
       credentials: {

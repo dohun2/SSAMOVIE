@@ -5,5 +5,6 @@ export default {
   accounts: {
     login: () => HOST + ACCOUNTS + 'login/',
     signup: () => HOST + ACCOUNTS + 'signup/',
+    logout: () => HOST + ACCOUNTS + 'logout/',
   },
 }

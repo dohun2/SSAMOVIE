@@ -5,15 +5,18 @@ import router from '@/router'
 export default {
   state: {
     token: localStorage.getItem('token') || '',
+    authError: null,
   },
   getters: {
     isLoggedIn: state => !!state.token,
+    authError: state => state.authError,
   },
   mutations: {
     SET_TOKEN: (state, token) => state.token = token,
+    SET_AUTH_ERROR: (state, error) => state.authError = error
   },
   actions: {
-    login({ dispatch }, credentials) {
+    login({ dispatch, commit }, credentials) {
       axios({
         url: drf.accounts.login(),
         method: 'post',
@@ -26,6 +29,7 @@ export default {
         })
         .catch(err => {
           console.error(err.response.data)
+          commit('SET_AUTH_ERROR', err.response.data)
         })
     },
 
@@ -34,7 +38,7 @@ export default {
       localStorage.setItem('token', token)
     },
 
-    signup({ dispatch }, credentials) {
+    signup({ dispatch, commit }, credentials) {
       console.log(credentials)
       axios({
         url: drf.accounts.signup(),
@@ -48,7 +52,27 @@ export default {
         })
         .catch(err => {
           console.error(err.response.data)
+          commit('SET_AUTH_ERROR', err.response.data)
         })
+    },
+    logout({ getters, dispatch }) {
+
+      axios({
+        url: drf.accounts.logout(),
+        method: 'post',
+        headers: getters.authHeader,
+      })
+        .then(() => {
+          dispatch('removeToken')
+          router.push({ name: 'login' })
+        })
+        .catch(err => {
+          console.error(err.response)
+        })
+    },
+    removeToken({ commit }) {
+      commit('SET_TOKEN', '')
+      localStorage.setItem('token', '')
     },
   },
 
