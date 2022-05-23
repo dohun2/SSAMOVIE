@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
-
+    
 
     'corsheaders',
     'django.contrib.admin',
@@ -156,5 +156,3 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.IsAuthenticated', #인증된 사용자만
     ]
 }
-
-CORS_ALLOW_ALL_ORIGINS = True
