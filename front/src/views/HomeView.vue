@@ -5,8 +5,16 @@
 </template>
 
 <script>
+import { getActions } from "vuex";
+
 export default {
   name: "HomeView",
+  methods: {
+    ...getActions([fetchMovies]),
+  },
+  created: {
+    fetchMovies()
+  },
 };
 </script>
 

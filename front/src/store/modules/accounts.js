@@ -10,6 +10,7 @@ export default {
   getters: {
     isLoggedIn: state => !!state.token,
     authError: state => state.authError,
+    authHeader: state => ({ Authorization: `Token ${state.token}` })
   },
   mutations: {
     SET_TOKEN: (state, token) => state.token = token,
