@@ -1,3 +1,6 @@
+import drf from '@/api/drf'
+import axios from 'axios'
+
 export default {
   state: {
     movies: [],
@@ -11,11 +14,14 @@ export default {
   actions: {
     fetchMovies({ commit, getters }) {
       axios({
-        url: drf.articles.articles(),
+        url: drf.movies.movies(),
         method: 'get',
         headers: getters.authHeader,
       })
-        .then(res => commit('SET_MOVIES', res.data))
+        .then(res => {
+          console.log(res.data)
+          commit('SET_MOVIES', res.data)
+        })
         .catch(err => console.error(err.response))
     },
   },

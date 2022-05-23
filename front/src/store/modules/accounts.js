@@ -25,6 +25,7 @@ export default {
       })
         .then(res => {
           const token = res.data.key
+          console.log(token)
           dispatch('saveToken', token)
           router.push({ name: 'home' })
         })
