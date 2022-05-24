@@ -16,13 +16,13 @@ class MovieSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Movie
-        fields = ('title','poster_path','id')
+        fields = '__all__'
 
 class MovielistSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Movie
-        fields = '__all__'
+        fields = ('title','poster_path','id')
 
 class CommentSerializer(serializers.ModelSerializer):
     
