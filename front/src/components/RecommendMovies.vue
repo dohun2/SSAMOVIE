@@ -1,5 +1,5 @@
 <template>
-  <div class="movie-item">
+  <div>
     <b-card
       :img-src="url"
       img-alt="Image"
@@ -17,21 +17,21 @@
 import { mapActions } from "vuex";
 
 export default {
-  name: "HomeMovies",
+  name: "RecommendMovies",
   data() {
     return {
-      url: `https://image.tmdb.org/t/p/original${this.movie.poster_path}`,
+      url: `https://image.tmdb.org/t/p/original${this.item.poster_path}`,
     };
   },
   methods: {
     ...mapActions(["detailMovie"]),
     goDetail() {
-      this.detailMovie(this.movie.id);
+      this.detailMovie(this.item.id);
       this.$bvModal.show("bv-modal-example");
     },
   },
   props: {
-    movie: {
+    item: {
       type: Object,
     },
   },

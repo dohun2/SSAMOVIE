@@ -7,7 +7,8 @@
         :key="movie.id"
         :movie="movie"
         class="col-2"
-      ></home-movies>
+      >
+      </home-movies>
     </div>
   </div>
 </template>

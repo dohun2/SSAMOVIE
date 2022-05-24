@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import idna
 from rest_framework.response import Response
 from .models import Movie
 from rest_framework.decorators import api_view
@@ -13,7 +14,7 @@ def index(request):
 
 
 @api_view(['GET'])
-def detail(request, pk):
-    movie = Movie.objects.get(pk=pk)
+def detail(request, id):
+    movie = Movie.objects.get(id=id)
     serializer = MovieSerializer(movie)
     return Response(serializer.data)   

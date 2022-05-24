@@ -9,6 +9,7 @@ export default {
     logout: () => HOST + ACCOUNTS + 'logout/',
   },
   movies: {
-    movies: () => HOST + MOVIES + 'movie/'
+    movies: () => HOST + MOVIES,
+    detail: (id) => HOST + MOVIES + id + '/'
   }
 }

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <movie-detail></movie-detail>
     <nav-bar v-if="isLoggedIn"></nav-bar>
     <router-view></router-view>
   </div>
@@ -7,12 +8,15 @@
 
 <script>
 import NavBar from "./components/NavBar.vue";
+import MovieDetail from "./components/MovieDetail.vue";
+
 import { mapGetters } from "vuex";
 
 export default {
   name: "App",
   components: {
     NavBar,
+    MovieDetail,
   },
   computed: {
     ...mapGetters(["isLoggedIn"]),
