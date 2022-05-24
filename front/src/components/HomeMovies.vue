@@ -18,11 +18,7 @@ import { mapActions } from "vuex";
 
 export default {
   name: "HomeMovies",
-  data() {
-    return {
-      url: `https://image.tmdb.org/t/p/original${this.movie.poster_path}`,
-    };
-  },
+  components: {},
   methods: {
     ...mapActions(["detailMovie"]),
     goDetail() {
@@ -33,6 +29,11 @@ export default {
   props: {
     movie: {
       type: Object,
+    },
+  },
+  computed: {
+    url() {
+      return `https://image.tmdb.org/t/p/original${this.movie.poster_path}`;
     },
   },
 };

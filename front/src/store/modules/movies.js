@@ -37,7 +37,6 @@ export default {
         headers: getters.authHeader,
       })
         .then(res => {
-          console.log(res.data)
           commit('SET_MOVIE', res.data)
         })
         .catch(err => console.error(err.response))
