@@ -1,12 +1,17 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from movies.models import Article
 
+class ProfileSerializer(serializers.ModelSerializer):
 
-User = get_user_model()
+    class ArticleSerializer(serializers.ModelSerializer):
+        
+        class Meta:
+            model = Article
+            fields = ('pk', 'title', 'content')
 
-class UserSerializer(serializers.ModelSerializer):
+    articles = ArticleSerializer(many=True)
 
-    
     class Meta:
-        model = User
-        fields = ('pk', 'username', )
+        model = get_user_model()
+        fields = ('pk', 'username', 'email', 'articles',)

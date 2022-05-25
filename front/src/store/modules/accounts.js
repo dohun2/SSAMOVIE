@@ -8,18 +8,21 @@ export default {
     authError: null,
     currentUser: {},
     username: localStorage.getItem('CurrentUser') || '',
+    profile: {},
   },
   getters: {
     currentUser: state => state.currentUser,
     isLoggedIn: state => !!state.token,
     authError: state => state.authError,
-    authHeader: state => ({ Authorization: `Token ${state.token}` })
+    authHeader: state => ({ Authorization: `Token ${state.token}` }),
+    profile: state => state.profile,
   },
   mutations: {
     SET_TOKEN: (state, token) => state.token = token,
     SET_AUTH_ERROR: (state, error) => state.authError = error,
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
-    SET_USERNAME: (state, username) => state.currentUser = username
+    SET_USERNAME: (state, username) => state.currentUser = username,
+    SET_PROFILE: (state, profile) => state.profile = profile,
   },
   actions: {
     login({ dispatch, commit }, credentials) {
@@ -109,6 +112,18 @@ export default {
             }
           })
       }
+    },
+
+    fetchProfile({ commit, getters }, { username }) {
+      axios({
+        url: drf.accounts.profile(username),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+        .then(res => {
+          console.log('프로필 받아오기 성공')
+          commit('SET_PROFILE', res.data)
+        })
     },
   },
 

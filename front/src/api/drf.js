@@ -9,6 +9,7 @@ export default {
     signup: () => HOST + ACCOUNTS + 'signup/',
     logout: () => HOST + ACCOUNTS + 'logout/',
     currentUserInfo: () => HOST + ACCOUNTS + 'user/',
+    profile: username => HOST + ACCOUNTS + 'profile/' + username,
   },
   movies: {
     movies: () => HOST + MOVIES,

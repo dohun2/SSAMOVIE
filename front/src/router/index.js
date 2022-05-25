@@ -48,7 +48,7 @@ const routes = [
     component: RecommendView
   },
   {
-    path: '/userprofile',
+    path: '/userprofile/:username',
     name: 'userprofile',
     component: UserProfileView
   },
