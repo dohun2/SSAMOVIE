@@ -11,5 +11,8 @@ export default {
   movies: {
     movies: () => HOST + MOVIES,
     detail: (id) => HOST + MOVIES + id + '/'
+  },
+  articles: {
+    create: () => HOST + MOVIES + 'create/'
   }
 }
