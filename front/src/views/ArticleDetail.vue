@@ -9,14 +9,20 @@
       </router-link>
       <button @click="deleteArticle(articleId)">삭제하기</button>
     </div>
+
+    <comment-list :comments="article.comments"></comment-list>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import CommentList from "@/components/CommentList.vue";
 
 export default {
-  name: "ArticleDetail",
+  name: "ArticleDetailView",
+  components: {
+    CommentList,
+  },
   data() {
     return {
       articleId: this.$route.params.articleId,

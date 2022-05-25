@@ -7,6 +7,7 @@ export default {
     token: localStorage.getItem('token') || '',
     authError: null,
     currentUser: {},
+    username: localStorage.getItem('CurrentUser') || '',
   },
   getters: {
     currentUser: state => state.currentUser,
@@ -18,6 +19,7 @@ export default {
     SET_TOKEN: (state, token) => state.token = token,
     SET_AUTH_ERROR: (state, error) => state.authError = error,
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
+    SET_USERNAME: (state, username) => state.currentUser = username
   },
   actions: {
     login({ dispatch, commit }, credentials) {
@@ -71,6 +73,7 @@ export default {
       })
         .then(() => {
           dispatch('removeToken')
+          dispatch('removeUsername')
           router.push({ name: 'login' })
         })
         .catch(err => {
@@ -81,6 +84,11 @@ export default {
       commit('SET_TOKEN', '')
       localStorage.setItem('token', '')
     },
+    removeUsername({ commit }) {
+      commit('SET_USERNAME', '')
+      localStorage.setItem('CurrentUser', '')
+    },
+
 
     fetchCurrentUser({ commit, getters, dispatch }) {
       if (getters.isLoggedIn) {
@@ -91,6 +99,7 @@ export default {
         })
           .then(res => {
             console.log(res.data)
+            localStorage.setItem('CurrentUser', res.data.username)
             commit('SET_CURRENT_USER', res.data)
           })
           .catch(err => {

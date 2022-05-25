@@ -6,7 +6,7 @@ import HomeView from '../views/HomeView.vue'
 import CommunityView from '../views/CommunityView.vue'
 import RecommendView from '../views/RecommendView.vue'
 import UserProfileView from '../views/UserProfileView'
-import ArticleDetailView from '../views/ArticleDetailView.vue'
+import ArticleDetailView from '../views/ArticleDetail.vue'
 import ArticleEditView from '../views/ArticleEditView.vue'
 
 Vue.use(VueRouter)

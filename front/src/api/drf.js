@@ -1,6 +1,7 @@
 const HOST = 'http://localhost:8000/api/v1/'
 const ACCOUNTS = 'accounts/'
 const MOVIES = 'movies/'
+const COMMENTS = 'comments/'
 
 export default {
   accounts: {
@@ -15,6 +16,7 @@ export default {
   },
   articles: {
     articles: () => HOST + MOVIES + 'articles/',
-    article: (articleId) => HOST + MOVIES + 'articles/' + `${articleId}/`
+    article: (articleId) => HOST + MOVIES + 'articles/' + `${articleId}/`,
+    comments: (articleId) => HOST + MOVIES + 'articles/' + `${articleId}/` + COMMENTS,
   }
 }

@@ -17,11 +17,11 @@ export default {
   },
   mutations: {
     SET_ARTICLES: (state, articles) => state.articles = articles,
-    SET_ARTICLE: (state, article) => state.article = article
+    SET_ARTICLE: (state, article) => state.article = article,
+    SET_ARTICLE_COMMENTS: (state, comments) => (state.article.comments = comments),
   },
   actions: {
     createArticle({ getters, dispatch }, article) {
-      console.log(article)
       axios({
         url: drf.articles.articles(),
         method: 'post',
@@ -95,6 +95,23 @@ export default {
           })
         })
     },
+
+    createComment({ commit, getters }, { articlePk, content }) {
+      const comment = { content }
+
+      axios({
+        url: drf.articles.comments(articlePk),
+        method: 'post',
+        data: comment,
+        headers: getters.authHeader,
+      })
+        .then(res => {
+          console.log('댓글추가 성공')
+          commit('SET_ARTICLE_COMMENTS', res.data)
+        })
+        .catch(err => console.error(err.response))
+    },
+
   },
 
 
