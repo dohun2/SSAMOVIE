@@ -7,10 +7,18 @@ from movies.models import Article, Movie, Comment
 User = get_user_model()
 
 class ArticleSerializer(serializers.ModelSerializer):
+
+    class UserSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = User
+            fields = ('pk', 'username')
+
+    user = UserSerializer(read_only=True)
     
     class Meta:
         model = Article
-        fields = '__all__'
+        fields = ('pk','user','title','content')
+
 
 class MovieSerializer(serializers.ModelSerializer):
     
@@ -35,4 +43,4 @@ class ArticleListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields = ('id', 'title',)
+        fields = ('id', 'title','content')

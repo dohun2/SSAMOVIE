@@ -1,10 +1,9 @@
 <template>
-  <div class="movie-item">
+  <div>
     <b-card
       :img-src="url"
       img-alt="Image"
       img-top
-      tag="movie"
       style="max-width: 12rem"
       class="mb-2 bg-black"
       @click="goDetail"
@@ -14,7 +13,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "HomeMovies",
@@ -22,19 +21,20 @@ export default {
   methods: {
     ...mapActions(["detailMovie"]),
     goDetail() {
-      this.detailMovie(this.movie.id);
+      this.detailMovie(this.item.id);
       this.$bvModal.show("bv-modal-example");
     },
   },
   props: {
-    movie: {
+    item: {
       type: Object,
     },
   },
   computed: {
     url() {
-      return `https://image.tmdb.org/t/p/original${this.movie.poster_path}`;
+      return `https://image.tmdb.org/t/p/original${this.item.poster_path}`;
     },
+    ...mapGetters(["isMovies"]),
   },
 };
 </script>

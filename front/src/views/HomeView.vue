@@ -5,7 +5,7 @@
       <home-movies
         v-for="movie in movies"
         :key="movie.id"
-        :movie="movie"
+        :item="movie"
         class="col-2"
       >
       </home-movies>

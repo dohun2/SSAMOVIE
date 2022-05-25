@@ -6,6 +6,8 @@ import HomeView from '../views/HomeView.vue'
 import CommunityView from '../views/CommunityView.vue'
 import RecommendView from '../views/RecommendView.vue'
 import UserProfileView from '../views/UserProfileView'
+import ArticleDetailView from '../views/ArticleDetailView.vue'
+import ArticleEditView from '../views/ArticleEditView.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +26,16 @@ const routes = [
     path: '/community',
     name: 'community',
     component: CommunityView
+  },
+  {
+    path: '/community/:articleId',
+    name: 'article',
+    component: ArticleDetailView
+  },
+  {
+    path: '/community/:articleId/edit',
+    name: 'articleEdit',
+    component: ArticleEditView
   },
   {
     path: '/home',

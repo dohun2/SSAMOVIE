@@ -7,12 +7,14 @@ export default {
     login: () => HOST + ACCOUNTS + 'login/',
     signup: () => HOST + ACCOUNTS + 'signup/',
     logout: () => HOST + ACCOUNTS + 'logout/',
+    currentUserInfo: () => HOST + ACCOUNTS + 'user/',
   },
   movies: {
     movies: () => HOST + MOVIES,
     detail: (id) => HOST + MOVIES + id + '/'
   },
   articles: {
-    create: () => HOST + MOVIES + 'create/'
+    articles: () => HOST + MOVIES + 'articles/',
+    article: (articleId) => HOST + MOVIES + 'articles/' + `${articleId}/`
   }
 }

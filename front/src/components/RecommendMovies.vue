@@ -4,7 +4,6 @@
       :img-src="url"
       img-alt="Image"
       img-top
-      tag="movie"
       style="max-width: 12rem"
       class="mb-2 bg-black"
       @click="goDetail"

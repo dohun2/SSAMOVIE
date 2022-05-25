@@ -9,6 +9,7 @@ export default {
     recommend: [],
   },
   getters: {
+    isMovies: state => !_.isEmpty(state.movies),
     movies: state => state.movies,
     movie: state => state.movie,
     recommend: state => state.recommend

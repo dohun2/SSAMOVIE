@@ -28,10 +28,11 @@ def article_list(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
+        
         serializer = ArticleSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def article_detail(request, article_pk):

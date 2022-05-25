@@ -6,15 +6,18 @@ export default {
   state: {
     token: localStorage.getItem('token') || '',
     authError: null,
+    currentUser: {},
   },
   getters: {
+    currentUser: state => state.currentUser,
     isLoggedIn: state => !!state.token,
     authError: state => state.authError,
     authHeader: state => ({ Authorization: `Token ${state.token}` })
   },
   mutations: {
     SET_TOKEN: (state, token) => state.token = token,
-    SET_AUTH_ERROR: (state, error) => state.authError = error
+    SET_AUTH_ERROR: (state, error) => state.authError = error,
+    SET_CURRENT_USER: (state, user) => state.currentUser = user,
   },
   actions: {
     login({ dispatch, commit }, credentials) {
@@ -27,6 +30,7 @@ export default {
           const token = res.data.key
           console.log(token)
           dispatch('saveToken', token)
+          dispatch('fetchCurrentUser')
           router.push({ name: 'home' })
         })
         .catch(err => {
@@ -50,6 +54,7 @@ export default {
         .then(res => {
           const token = res.data.key
           dispatch('saveToken', token)
+          dispatch('fetchCurrentUser')
           router.push({ name: 'home' })
         })
         .catch(err => {
@@ -75,6 +80,26 @@ export default {
     removeToken({ commit }) {
       commit('SET_TOKEN', '')
       localStorage.setItem('token', '')
+    },
+
+    fetchCurrentUser({ commit, getters, dispatch }) {
+      if (getters.isLoggedIn) {
+        axios({
+          url: drf.accounts.currentUserInfo(),
+          method: 'get',
+          headers: getters.authHeader,
+        })
+          .then(res => {
+            console.log(res.data)
+            commit('SET_CURRENT_USER', res.data)
+          })
+          .catch(err => {
+            if (err.response.status === 401) {
+              dispatch('removeToken')
+              router.push({ name: 'login' })
+            }
+          })
+      }
     },
   },
 
