@@ -112,6 +112,36 @@ export default {
         .catch(err => console.error(err.response))
     },
 
+    updateComment({ commit, getters }, { articlePk, commentPk, content }) {
+      const comment = { content }
+
+      axios({
+        url: drf.articles.comment(articlePk, commentPk),
+        method: 'put',
+        data: comment,
+        headers: getters.authHeader,
+      })
+        .then(res => {
+          commit('SET_ARTICLE_COMMENTS', res.data)
+        })
+        .catch(err => console.error(err.response))
+    },
+
+    deleteComment({ commit, getters }, { articlePk, commentPk }) {
+      if (confirm('정말 삭제하시겠습니까?')) {
+        axios({
+          url: drf.articles.comment(articlePk, commentPk),
+          method: 'delete',
+          data: {},
+          headers: getters.authHeader,
+        })
+          .then(res => {
+            commit('SET_ARTICLE_COMMENTS', res.data)
+          })
+          .catch(err => console.error(err.response))
+      }
+    },
+
   },
 
 

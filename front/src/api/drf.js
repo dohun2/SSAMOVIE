@@ -18,5 +18,7 @@ export default {
     articles: () => HOST + MOVIES + 'articles/',
     article: (articleId) => HOST + MOVIES + 'articles/' + `${articleId}/`,
     comments: (articleId) => HOST + MOVIES + 'articles/' + `${articleId}/` + COMMENTS,
+    comment: (articleId, commentPk) =>
+      HOST + MOVIES + 'articles/' + `${articleId}/` + COMMENTS + `${commentPk}/`,
   }
 }
