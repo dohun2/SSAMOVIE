@@ -10,7 +10,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Article
-        fields = ('pk', 'user', 'title', 'content', ' created_at', 'updated_at')
+        fields = '__all__'
 
 class MovieSerializer(serializers.ModelSerializer):
     
@@ -29,4 +29,10 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = '__all__'
+        read_only_fields = ('article',)
 
+class ArticleListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Article
+        fields = ('id', 'title',)
