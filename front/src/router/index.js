@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 import LoginView from '../views/LoginView.vue'
 import SignupView from '../views/SignupView.vue'
 import HomeView from '../views/HomeView.vue'
@@ -8,6 +9,7 @@ import RecommendView from '../views/RecommendView.vue'
 import UserProfileView from '../views/UserProfileView'
 import ArticleDetailView from '../views/ArticleDetail.vue'
 import ArticleEditView from '../views/ArticleEditView.vue'
+import NotFound404 from '../views/NotFound404.vue'
 
 Vue.use(VueRouter)
 
@@ -51,6 +53,15 @@ const routes = [
     path: '/userprofile/:username',
     name: 'userprofile',
     component: UserProfileView
+  },
+  {
+    path: '/404',
+    name: 'NotFound404',
+    component: NotFound404
+  },
+  {
+    path: '*',
+    redirect: '/404'
   },
 
 ]

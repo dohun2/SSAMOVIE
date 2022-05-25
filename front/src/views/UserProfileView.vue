@@ -12,6 +12,7 @@
         </router-link>
       </li>
     </ul>
+    <h2>평점을 남긴 영화</h2>
   </div>
 </template>
 
