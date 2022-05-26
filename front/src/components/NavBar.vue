@@ -2,6 +2,7 @@
   <div>
     <b-navbar type="dark" variant="black">
       <b-navbar-nav>
+        <img class="logo" src="../assets/SSAMOVIE.png" alt="logo" />
         <b-nav-item :to="{ name: 'home' }">홈</b-nav-item>
         <b-nav-item :to="{ name: 'recommend' }">영화추천</b-nav-item>
         <b-nav-item :to="{ name: 'community' }">커뮤니티</b-nav-item>
@@ -37,5 +38,8 @@ export default {
 .nav {
   display: flex;
   justify-content: space-around;
+}
+.logo {
+  width: 100px;
 }
 </style>

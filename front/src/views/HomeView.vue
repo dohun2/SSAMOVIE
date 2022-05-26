@@ -37,6 +37,7 @@ export default {
 <style>
 .home {
   background-color: black;
+  justify-content: center;
 }
 .movie {
   display: flex;
