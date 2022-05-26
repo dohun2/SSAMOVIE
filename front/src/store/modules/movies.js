@@ -65,5 +65,21 @@ export default {
         })
         .catch(err => console.error(err.response))
     },
+
+    deleteMovieComment({ commit, getters }, { movieId, commentPk }) {
+      if (confirm('정말 삭제하시겠습니까?')) {
+        axios({
+          url: drf.movies.comment(movieId, commentPk),
+          method: 'delete',
+          data: {},
+          headers: getters.authHeader,
+        })
+          .then(res => {
+            console.log('평점삭제 성공')
+            commit('SET_MOVIE_COMMENTS', res.data)
+          })
+          .catch(err => console.error(err.response))
+      }
+    },
   },
 }

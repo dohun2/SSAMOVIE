@@ -15,6 +15,7 @@ export default {
     movies: () => HOST + MOVIES,
     detail: (id) => HOST + MOVIES + id + '/',
     vote: (id) => HOST + MOVIES + `${id}/` + COMMENTS,
+    comment: (id, commentPk) => HOST + MOVIES + `${id}/` + COMMENTS + `${commentPk}/`
   },
   articles: {
     articles: () => HOST + MOVIES + 'articles/',
