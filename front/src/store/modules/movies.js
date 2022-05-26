@@ -10,6 +10,7 @@ export default {
   },
   getters: {
     isMovies: state => !_.isEmpty(state.movies),
+    isMovie: state => !_.isEmpty(state.movie),
     movies: state => state.movies,
     movie: state => state.movie,
     recommend: state => state.recommend
@@ -18,7 +19,7 @@ export default {
     SET_MOVIES: (state, movies) => state.movies = movies,
     SET_MOVIE: (state, movie) => state.movie = movie,
     SET_RECOMMEND: (state, recommend) => state.recommend = recommend,
-    SET_MOVIE_COMMENTS: (state, comments) => (state.movie.comments = comments),
+    SET_MOVIE_COMMENTS: (state, comments) => (state.movie.movie_comments = comments),
   },
   actions: {
     fetchMovies({ commit, getters }) {
@@ -49,7 +50,7 @@ export default {
       commit('SET_RECOMMEND', random)
     },
 
-    createMovieComment({ commit, getters }, { movieId, content }) {
+    createMovieComment({ getters, dispatch }, { movieId, content }) {
       const comment = { content }
 
       axios({
@@ -58,28 +59,29 @@ export default {
         data: comment,
         headers: getters.authHeader,
       })
-        .then(res => {
+        .then(() => {
           console.log('평점추가 성공')
-          commit('SET_MOVIE_COMMENTS', res.data)
-
+          dispatch('detailMovie', movieId)
         })
         .catch(err => console.error(err.response))
     },
 
-    deleteMovieComment({ commit, getters }, { movieId, commentPk }) {
+    deleteMovieComment({ getters, dispatch }, { movieId, commentPk }) {
       if (confirm('정말 삭제하시겠습니까?')) {
+        console.log(movieId, commentPk)
         axios({
           url: drf.movies.comment(movieId, commentPk),
           method: 'delete',
           data: {},
           headers: getters.authHeader,
         })
-          .then(res => {
+          .then(() => {
             console.log('평점삭제 성공')
-            commit('SET_MOVIE_COMMENTS', res.data)
+            dispatch('detailMovie', movieId)
           })
           .catch(err => console.error(err.response))
       }
     },
+
   },
 }

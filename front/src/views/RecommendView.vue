@@ -5,17 +5,17 @@
       <b-button-group>
         <b-button @click="getRandom()">랜덤</b-button>
         <b-dropdown right text="장르별">
-          <b-dropdown-item>액션</b-dropdown-item>
+          <b-dropdown-item @click="soori()">액션</b-dropdown-item>
           <b-dropdown-divider></b-dropdown-divider>
-          <b-dropdown-item>로맨스</b-dropdown-item>
+          <b-dropdown-item @click="soori()">로맨스</b-dropdown-item>
           <b-dropdown-divider></b-dropdown-divider>
-          <b-dropdown-item>판타지</b-dropdown-item>
+          <b-dropdown-item @click="soori()">판타지</b-dropdown-item>
           <b-dropdown-divider></b-dropdown-divider>
-          <b-dropdown-item>코미디</b-dropdown-item>
+          <b-dropdown-item @click="soori()">코미디</b-dropdown-item>
           <b-dropdown-divider></b-dropdown-divider>
-          <b-dropdown-item>애니매이션</b-dropdown-item>
+          <b-dropdown-item @click="soori()">애니매이션</b-dropdown-item>
           <b-dropdown-divider></b-dropdown-divider>
-          <b-dropdown-item>공포</b-dropdown-item>
+          <b-dropdown-item @click="soori()">공포</b-dropdown-item>
         </b-dropdown>
       </b-button-group>
     </div>
@@ -44,6 +44,10 @@ export default {
   },
   methods: {
     ...mapActions(["getRandom"]),
+    soori() {
+      console.log("수리");
+      alert("수리 중~~");
+    },
   },
 };
 </script>

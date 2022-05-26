@@ -1,13 +1,16 @@
 <template>
-  <div>
+  <div class="movie-comment">
     <p>{{ comment.user.username }}</p>
     <h2>{{ comment.content }}</h2>
-    <button @click="deleteMovieComment(payload)">삭제</button>
+
+    <span v-if="currentUser.username === comment.user.username">
+      <button @click="OnClick">삭제</button>
+    </span>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "MovieComment",
   props: {
@@ -15,20 +18,30 @@ export default {
       type: Object,
     },
   },
+  computed: {
+    ...mapGetters(["currentUser"]),
+  },
   data() {
     return {
       payload: {
-        movieId: this.comment.movie,
-        commentPk: this.comment.pk,
-        content: this.comment.content,
+        movieId: "",
+        commentPk: "",
       },
     };
   },
   methods: {
     ...mapActions(["deleteMovieComment"]),
+    OnClick() {
+      this.payload.commentPk = this.comment.pk;
+      this.payload.movieId = this.comment.movie;
+      this.deleteMovieComment(this.payload);
+    },
   },
 };
 </script>
 
 <style>
+.movie-comment {
+  border: 1px solid black;
+}
 </style>
