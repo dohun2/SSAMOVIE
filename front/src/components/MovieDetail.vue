@@ -9,16 +9,42 @@
         <h4>평점: {{ movie.vote_average }}</h4>
         <p>{{ movie.overview }}</p>
       </div>
+      <form @submit.prevent="onVote()">
+        <input v-model="content" type="text" placeholder="평점 남기기" />
+        <input type="submit" value="작성" />
+      </form>
+      <movie-comment
+        v-for="comment in movie.comments"
+        :key="comment.pk"
+      ></movie-comment>
     </b-modal>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import MovieComment from "@/components/MovieComment.vue";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "MovieDetail",
-  methods: {},
+  components: {
+    MovieComment,
+  },
+  data() {
+    return {
+      content: "",
+    };
+  },
+  methods: {
+    ...mapActions(["createMovieComment"]),
+    onVote() {
+      this.createMovieComment({
+        movieId: this.movie.id,
+        content: this.content,
+      });
+      this.content = "";
+    },
+  },
   computed: {
     ...mapGetters(["movie"]),
     url() {

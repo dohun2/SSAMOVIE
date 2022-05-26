@@ -18,6 +18,7 @@ export default {
     SET_MOVIES: (state, movies) => state.movies = movies,
     SET_MOVIE: (state, movie) => state.movie = movie,
     SET_RECOMMEND: (state, recommend) => state.recommend = recommend,
+    SET_MOVIE_COMMENTS: (state, comments) => (state.movie.comments = comments),
   },
   actions: {
     fetchMovies({ commit, getters }) {
@@ -46,6 +47,22 @@ export default {
       const random = _.sampleSize(getters.movies, 18)
       console.log(random)
       commit('SET_RECOMMEND', random)
-    }
+    },
+
+    createMovieComment({ commit, getters }, { movieId, content }) {
+      const comment = { content }
+
+      axios({
+        url: drf.movies.vote(movieId),
+        method: 'post',
+        data: comment,
+        headers: getters.authHeader,
+      })
+        .then(res => {
+          console.log('평점추가 성공')
+          commit('SET_MOVIE_COMMENTS', res.data)
+        })
+        .catch(err => console.error(err.response))
+    },
   },
 }

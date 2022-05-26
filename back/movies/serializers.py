@@ -2,7 +2,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 
-from movies.models import Article, Movie, Comment
+from movies.models import Article, Movie, Comment, MovieComment
 
 User = get_user_model()
 class CommentSerializer(serializers.ModelSerializer):
@@ -18,6 +18,20 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = ('pk', 'user', 'content', 'article',)
         read_only_fields = ('article', )
+
+class MovieCommentSerializer(serializers.ModelSerializer):
+    
+    class UserSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = User
+            fields = ('pk', 'username')
+
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = MovieComment
+        fields = ('pk', 'user', 'content', 'movie',)
+        read_only_fields = ('movie', )
 
 class ArticleSerializer(serializers.ModelSerializer):
 

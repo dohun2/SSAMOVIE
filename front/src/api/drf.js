@@ -13,7 +13,8 @@ export default {
   },
   movies: {
     movies: () => HOST + MOVIES,
-    detail: (id) => HOST + MOVIES + id + '/'
+    detail: (id) => HOST + MOVIES + id + '/',
+    vote: (id) => HOST + MOVIES + `${id}/` + COMMENTS,
   },
   articles: {
     articles: () => HOST + MOVIES + 'articles/',

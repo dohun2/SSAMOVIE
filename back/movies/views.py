@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.shortcuts import get_list_or_404, get_object_or_404
-from .serializers import MovieSerializer,MovielistSerializer,ArticleSerializer,ArticleListSerializer, CommentSerializer
+from .serializers import MovieSerializer,MovielistSerializer,ArticleSerializer,ArticleListSerializer, CommentSerializer,MovieCommentSerializer
 from .models import Movie, Article, Comment
 # Create your views here.
 
@@ -19,6 +19,19 @@ def detail(request, id):
     movie = Movie.objects.get(id=id)
     serializer = MovieSerializer(movie)
     return Response(serializer.data)   
+
+
+@api_view(['POST'])
+def movie_comment_create(request, id):
+    user = request.user
+    movie = get_object_or_404(Movie, pk=id)
+    
+    serializer = MovieCommentSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(movie=movie, user=user)
+        comments = movie.movie_comments.all()
+        serializer = MovieCommentSerializer(comments, many=True)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET', 'POST'])
 def article_list(request):
