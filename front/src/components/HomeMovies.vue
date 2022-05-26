@@ -22,6 +22,7 @@ export default {
     ...mapActions(["detailMovie"]),
     goDetail() {
       this.detailMovie(this.item.id);
+      console.log(this.movie);
       this.$bvModal.show("bv-modal-example");
     },
   },
@@ -34,7 +35,7 @@ export default {
     url() {
       return `https://image.tmdb.org/t/p/original${this.item.poster_path}`;
     },
-    ...mapGetters(["isMovies"]),
+    ...mapGetters(["isMovies", "movie"]),
   },
 };
 </script>

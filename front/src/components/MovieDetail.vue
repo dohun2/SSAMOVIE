@@ -9,14 +9,22 @@
         <h4>평점: {{ movie.vote_average }}</h4>
         <p>{{ movie.overview }}</p>
       </div>
+      <movie-comment
+        v-for="comment in movie.movie_comments"
+        :key="comment.id"
+        :comment="comment"
+      >
+      </movie-comment>
       <form @submit.prevent="onVote()">
-        <input v-model="content" type="text" placeholder="평점 남기기" />
+        <input
+          v-model="content"
+          max="10"
+          min="1"
+          type="number"
+          placeholder="평점 남기기"
+        />
         <input type="submit" value="작성" />
       </form>
-      <movie-comment
-        v-for="comment in movie.comments"
-        :key="comment.pk"
-      ></movie-comment>
     </b-modal>
   </div>
 </template>

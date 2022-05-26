@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from movies.models import Article, Movie, Comment, MovieComment
 
 User = get_user_model()
+
 class CommentSerializer(serializers.ModelSerializer):
     
     class UserSerializer(serializers.ModelSerializer):
@@ -49,7 +50,15 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
 class MovieSerializer(serializers.ModelSerializer):
-    
+
+    class UserSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = User
+            fields = ('pk', 'username')
+
+    user = UserSerializer(read_only=True)
+    movie_comments = MovieCommentSerializer(many=True, read_only=True)
+
     class Meta:
         model = Movie
         fields = '__all__'

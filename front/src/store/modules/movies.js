@@ -61,6 +61,7 @@ export default {
         .then(res => {
           console.log('평점추가 성공')
           commit('SET_MOVIE_COMMENTS', res.data)
+
         })
         .catch(err => console.error(err.response))
     },

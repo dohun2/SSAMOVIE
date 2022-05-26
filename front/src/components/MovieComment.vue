@@ -1,12 +1,17 @@
 <template>
   <div>
-    <h1>1111</h1>
+    <h1>{{ comment.content }}</h1>
   </div>
 </template>
 
 <script>
 export default {
   name: "MovieComment",
+  props: {
+    comment: {
+      type: Object,
+    },
+  },
 };
 </script>
 
